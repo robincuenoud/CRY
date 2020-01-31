@@ -94,4 +94,4 @@ Il faut qu'il fasse signer un certificat par une autorité de certification avec
 
 ###### 4. 
 
-Il faut qu'ils utilisent une tierce personne de confiance (une ROOT CA par exemple) =)
+Il faut qu'ils utilisent une tierce personne de confiance (une ROOT CA par exemple) pour faire une ECDH ensuite et avoir un secret partagé.
