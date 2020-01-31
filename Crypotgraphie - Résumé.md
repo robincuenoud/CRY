@@ -1,4 +1,4 @@
-# Crypotgraphie - Résumé 
+# Crypotgraphie - Final 2018  (telgram)
 
 ### Midterm 2018 Bad HMAC
 
@@ -24,9 +24,27 @@ Pour signer un message $ m $ on doit faire $m^d$ mod $N$ or comme $N$ est un gra
 
 ###### 2. 
 
+-- A completer
 
+###### 3. 
 
+On chauffe la partie _Calculs mod p_ pour obtenir la signature $s_{p\_error}$
 
+comme la partie $ \pmod q $ est valide. $ s_q = s_{p\_error} \mod q$ 
+
+et $s_p = s_{p\_error} \pmod p$ or erreur ici donc $s_p = m^d \pmod x$ ou x est un entier quelconque. 
 
 Note : Dessiner échange de clef DH avec certificat
+
+###### 4.
+
+Pour rappel 
+
+* black box accès à un oracle de chiffrement par exemple
+* grey box droit en plus à des infos sur l'implémentation
+* whitebox accès à tout 
+
+Donc c'est entre grey et white box
+
+###### 5. 
 
