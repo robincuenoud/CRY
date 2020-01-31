@@ -1,0 +1,213 @@
+\documentclass{article}
+
+\usepackage{a4wide}
+\usepackage{titling}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={150mm,260mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[version=3]{mhchem}
+\usepackage{siunitx}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[rightcaption]{sidecap}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage[english,french]{babel}
+
+\bibliographystyle{unsrtnat}
+\usepackage[pdftex]{hyperref}
+\setlength\parindent{0pt}
+\usepackage{xcolor}
+\hypersetup{colorlinks,urlcolor=blue}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{bm}
+
+
+
+
+\fancyhf{}
+\rfoot{Page \thepage \hspace{1pt}}   % //Page 1    %of \pageref{LastPage}}        // 1 of 1
+
+\setlength{\columnseprule}{1pt}
+
+\def\columnseprulecolor{\color{gray}}
+
+
+\renewcommand{\labelenumi}{\alph{enumi}.}
+\renewcommand{\ULdepth}{1.8pt}
+
+%---------------------------- PAGE 1 --------------------------------------------------------------------
+
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+
+\begin{multicols*}{2}
+[\section*{CRY-Résumé}]
+\textbf{Définitions}\\
+\uline{Adversaire passif:} peut espionner une comm. mais pas modifier le contenu\\
+\uline{Adversaire actif:} peut espionner une comm., la modifier et se faire passer pour un des communiquants\\
+\uline{Authenticité:} On peut prouver l'origine avec certitude\\
+\uline{Intégrité:} On peut prouver la non-modification d'un message\\
+\uline{Adversaire black-box:} Considère les algo comme des boîtes noires et les utilise comme oracle (\textit{attaque texte chiffré connu, clair connu, chiffré connu/choisi})\\
+\uline{Adversaire gray-box:} Peut obtenir de l'info de l'implémentation \\
+\textbf{Chance nbr à 100 chiffres soit premier?}\\
+$ \frac{10^{100}}{\frac{10^{100}}{\ln(10^{100})}} = \frac{1}{\ln(10^{100})} = \frac{1}{10 \dot \ln(2)} $
+\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Théorème Fermat-Euler}\\
+$ a^{\varphi(n)} \equiv 1 \pmod n$ si \textbf{\textcolor{red}{a premier avec n}}\\
+$7^{123456} \pmod{13} = 7^{10288 \cdot 12} \pmod{13}$\\
+$= (7^{12})^{10288} \pmod{13} = (1)^{10288} \pmod{13} \equiv 1$\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Calculer un inverse mutliplicatif}\\
+Après algo Euclide étendu:\\
+$(3, -1, 1) \quad (1, -2, -7)$\\
+Inverse de $13 \pmod{23} \rightarrow -7$\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Calculer log$_{3}$ de 4 mod 17}\\
+On cherche x tel que $3^{x} = 4 \pmod{17}$\\
+$\rightarrow$ On s'amuse à toutes les calculer...\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Factorisation d'un polynôme p}\\
+$2 \leq Deg(p) \leq 3$: on regarde si racine\\
+$Deg(p) > 3$ test si div. par polynôme Deg $\leq k/2$\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Anneau}\\
+$\mathbb{F}[x]/m(x)$\\
+\textbf{Corps}\\
+$\mathbb{F}[x]/m(x)$ pour $m(x)$ irréductible sur $\mathbb{F}$\\
+$GF(p)$ \text{: Corps de Galois premier}\\
+$GF(p^{m})$ \text{: Corps de Galois non-premier}\\
+$\rightarrow$ Si on demande si $GF(36)$ existe, non car il n'existe pas de paire (p,m) tel que $p^{m} = 36$\\
+$\rightarrow$ Un corps de Galois à 81 éléments existe: $\mathbb{Z}_{3}$ avec un polynôme de \textbf{\textcolor{red}{irréductible}} de degré 4\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Montrer que $f$ est une permutation}\\
+Il suffit de montrer que $f$ est inversible\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Chiffrement symétrique}\\
+\underline{Modèles de sécurité}: pas trouver la clé décrypter le message, obtenir le moindre bit\\
+\underline{Chiffrement par blocs}: \textit{input:} plaintext + key 
+\textit{output:} ciphertext
+\\
+\underline{Chiffrement par flot}:\textit{input:} init. vector + key
+\textit{output:} flot de bits (pour XOR avec plaintext)\\
+\noindent\rule{7cm}{0.5pt}
+
+
+
+\columnbreak
+
+
+\textbf{Casser Vigenère}\\
+Pour $(m, c = m+k) \rightarrow k = c-m$\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Casser Hill (avec n paires textes clairs)}\\
+$ K = YX^{-1} \pmod m$ si $\det(X)$ premier avec m\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Opérations sur GF(2$^8$)}\\
+\uline{Addition}: XOR\\
+\uline{Multiplication par 0x02}: Shift vers la gauche (avec en plus un XOR avec 0x1b si carry)\\
+\uline{Multiplication par 0x03}: Xor entre les multiplications par 0x02 et 0x01 \\
+\textbf{CBC} $\leftarrow$ \textbf{\textcolor{blue}{Pas parallélisable}}\\
+Si le nonce se répète:\\
+On peut distinguer des messages qui commencent par les mêmes
+blocs car les textes chiffrés correspondants seront les mêmes\\
+\textbf{CTR} $\leftarrow$ \textbf{\textcolor{blue}{Parallélisable}}\\
+Si le nonce se répète: \\
+$C_{11} = M_{11} \oplus AES(NC_{1})$\\
+$C_{12} = M_{12} \oplus AES(NC_{1})$\\
+$\rightarrow C_{11} \oplus C_{12} = M_{11} \oplus M_{12}$ \\
+\textbf{GCM}\\
+Pareil que CTR mais propose l'authenticité.\\
+L'AD permet d'authentifier sans les chiffré. Utile pour l'authentification de certaines valeurs dans les paquets réseau au moment du routage
+\noindent\rule{7cm}{0.5pt}
+\textbf{Taille des blocs}\\
+\uline{AES}: 128 bits\\
+\uline{DES}: 64 bits\\
+\uline{Triple-DES}: 64 bits\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Paradoxe des anniversaires}\\
+Pour une empreinte de \textit{l} bits, trouver une collision demande au plus $2^{\frac{l}{2}}$\\
+$\rightarrow$ Taille moyenne du plaintext pour une répétition de blocs (AES, DES, Triple-DES): $k \cdot 2^{\frac{k}{2}}$\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Courbes elliptiques}\\
+\uline{Inverse d'un point P:}\\
+Pour un point $P = (x;y) \rightarrow P^{-1} = (x;-y)$\\
+\textbf{Addition de points $P+Q$:}\\
+$\mathcal{O}$ si $P = -Q$\\
+$P$ si $Q =  \mathcal{O}$\\
+$2P$ si $P = Q$ (Doublement de point)\\
+sinon: Addition de points\\
+\textbf{Formules pour $P(x_P; y_P) Q(x_Q; y_Q)$:}\\
+\uline{Addition $x_P \not= x_Q$:}\\
+	$x_R = (\frac{y_Q - y_P}{x_Q-x_P})^2 - x_P - x_Q$\\
+	$y_R = -y_P + (\frac{y_Q - y_P}{x_Q-x_P})(x_P-x_R)$\\ 
+\uline{Doublement de point:}\\
+	$x_R = (\frac{3x_P^2 + a}{2y_P})^2 - 2x_P$\\
+	$y_R = (\frac{3x_P^2 + a}{2y_P})(x_P-x_R) - y_P$\\
+\textbf{Courbes elliptiques sur $GF(2^r)$}\\
+\textcolor{red}{Il vaut mieux ne pas les utiliser}, des attaques rendent leur utilisation douteuse\\
+\noindent\rule{7cm}{0.5pt}
+\newpage
+
+\textbf{Théorème de Hasse}\\
+Si $N$ est le nombre de points sur une courbe elliptique définie sur un corps à q éléments, alors N est borné par:\\
+$(q+1) -2\sqrt{q} \leqslant N \leqslant (q+1)+2\sqrt{q}$ \\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Problème du logarithme discret}\\
+\uline{Groupe multiplicatif:} $g^r$ \\
+Trouver $r$ sachant $g$, $g^r$ est difficile\\
+\uline{Groupe additif:} $rG$ \\
+Trouver $r$ sachant $G$, $rG$ est difficile\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{ECDH}\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\noindent\rule{7cm}{0.5pt}
+\textbf{Théorème des restes chinois}\\
+\\
+$\bm{x \in \mathbb{Z}_{pq} \rightarrow (a;b) \in \mathbb{Z}_{p} \times \mathbb{Z}_{q}} $\\
+$a = x \mod{p}$ et $b = x \mod{q} $\\
+
+$\bm{(a;b) \in \mathbb{Z}_{p} \times \mathbb{Z}_{q} \rightarrow x \in \mathbb{Z}_{pq}} $\\
+\small{$x \equiv (a(q^{-1} \mod{p})q + b(p^{-1} \mod{q})p \mod{pq} $}
+
+\end{multicols*}
+
+
+
+
+
+
+\end{document}
+
+
+\nocite{}
+
+\bibliography{bib}
+
+\end{document}
+
