@@ -1,4 +1,4 @@
-# Crypotgraphie - Final 2018  (telgram)
+# Crypotgraphie - Final 2018 
 
 ### Midterm 2018 Bad HMAC
 
@@ -28,13 +28,7 @@ Pour signer un message $ m $ on doit faire $m^d$ mod $N$ or comme $N$ est un gra
 
 ###### 3. 
 
-On chauffe la partie _Calculs mod p_ pour obtenir la signature $s_{p\_error}$
-
-comme la partie $ \pmod q $ est valide. $ s_q = s_{p\_error} \mod q$ 
-
-et $s_p = s_{p\_error} \pmod p$ or erreur ici donc $s_p = m^d \pmod x$ ou x est un entier quelconque. 
-
-Note : Dessiner échange de clef DH avec certificat
+On choisit $s$ une signature , $s^e = m$ donc on a une signature valide correspondant à un message (qui ne veut rien dire). On prends une signature tronquée lors du calcul de p grâce au device en entrant $m$ comme message, ce qui nous donne $s'$. Ensuite comme dans le labo on prends $gcd(s'-s,N) = q$
 
 ###### 4.
 
@@ -44,7 +38,60 @@ Pour rappel
 * grey box droit en plus à des infos sur l'implémentation
 * whitebox accès à tout 
 
-Donc c'est entre grey et white box
+Donc c'est entre grey et white box ? Pas sur de cette réponse. 
 
-###### 5. 
 
+
+#### 3 Chiffrement d'El Gamal
+
+####  4 CBC-MAC
+
+###### 1 CBC-MAC fonctionne 
+
+On utilise CBC avec un algorithme de hashage ($E_k$) , un message $m$ est découpé en bloc de taille fixe ($m_0,m_1,...m_n$) le hash produit vaut $E_k(...E_k(E_k(m_0) \oplus  m_1) \oplus m_2...\oplus m_n)$ 
+
+Il faut faire attention car étant donné un message $m$ et un hash $\tau$ on peut trouver une collision avec les message $m || m \oplus \tau $ 
+
+ou bien utiliser un padding ou l'on ajoute la taille du message au début du premier bloc. 
+
+(Il faut faire attention a utiliser un IV à l'entrée et ne **jamais** réutiliser un IV.)
+
+#### 6 PRNG
+
+###### 1.  
+
+* Efficacité : Fonction de hashage sûre implique répartition uniforme sur la sortie, sauf qu'on se fixe aucune condition pour le nomre à tester et qu'il y'a une forte chance qu'aucun soit premier. Donc autant tirer directement un nombre de 512 bits.
+* Sécurité : Keylenght recommende 2048 bit donc faible, en plus on est pas sur que le premier trouvé fasse partie des "premiers sûr". (pas de la forme 2p + 1 ou p est premier) (valable pour tous).
+
+###### 2
+
+* Efficacité : Si la dernière pièce de monnaie vaut 0 on a tiré 512 pièces pour rien. Donc pas efficace. Et cribe pas efficace du tout. 
+
+* Sécurité : 512 trop court, sinon c'est mieux si c'est un nombre premier sur. 
+
+###### 3 
+
+* Efficacité : c'est pareil que 1 donc nul. (encore pire que 1)
+* Sécurtité : entre deux nombre premier c'est toujours les mêmes nombres generé donc très très mauvais. (exemple si entre 1800 et 2000 on a un seul hash valide, on a pendant 200 ans le même nombre premier)
+
+###### 4 
+
+Une idée serait de génèrer aléatoirement un nombre n bit, mettre le LSB et le MSB à un puis tester avec miller-rabin. 
+
+#### 7 Choix de Primitives
+
+###### 1. 
+
+Il faut utiliser HTTPS (SSL/TLS 1.3) (certificat et chiffrement) comme ca il ne peut pas y avoir de MITM attaque.
+
+###### 2. 
+
+Elles doivent envoyer les données ainsi que le hash des données, et aussi s'authentifier (on a besoin de CIA ) donc utilisez une certificat signé à l'aide du certificat de l'entreprise par exemple des deux côté et il faut envoyer un hash des données. 
+
+###### 3. 
+
+Il faut qu'il fasse signer un certificat par une autorité de certification avec lequel il signe ses emails. 
+
+###### 4. 
+
+Il faut qu'ils utilisent une tierce personne de confiance (une ROOT CA par exemple) =)
