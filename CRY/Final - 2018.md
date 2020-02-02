@@ -36,7 +36,7 @@
 
 ![6.1](6.1.PNG)
 
-Il chiffre $p$ avec sa clef publique qui vaut $e^{-1} \pmod {phi(pq)} $  donc $c = p^{e^{-1} \pmod {(p-1)(q-1)}} $ donc si on prends $ c ^{e}  = p^{e^{-1}*e} = p $
+Il chiffre p donc c = p^clef privée, donc gcd(c,N) = p . 
 
 ![6.2](6.2.PNG)
 
