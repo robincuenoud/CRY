@@ -78,6 +78,8 @@ Il chiffre p donc c = p^clef privée, donc gcd(c,N) = p .
 
 ![6.2](6.2.PNG)
 
+Comme e = 3 , 60 char * 3  = 180 bits .  180  bits ^3 < N  car log_2(N) > 3*log_2(message). 
+
 ![7.1](7.1.PNG)
 
 $91 = 7 * 13$ donc on utilise les restes chinois.  $ 70^{122448} \pmod 7 = 0 \pmod 7 $ et $70^{122448} \pmod {13} = 5 ^{122448} $  Comme mod premier avec exposant on peut travailler mod phi(7) et phi(13) dans l’exposant.  $122448 \pmod 6 = 0$ et $122448 \pmod 12 =  0 $ car sommes des chiffre divisible par 3 et il est pair.  Donc $  x \equiv 0 \pmod 7 $ et $ x \equiv 1 \pmod {13} $ donc le résultat vaut 14. 
