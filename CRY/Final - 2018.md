@@ -51,10 +51,19 @@ Si la clé privée vaut 4 alors la clé publique vaut 4 * G, puisque G à un ord
 On peut donc trouver la clé publique en faisant O - G, soit -G, soit (3;1) 
 
 ![4.1](4.1.PNG)
+512 et 512 bits.
 
 ![4.2](4.2.PNG)
 
+il hache le message de la même manière, et si les empreintes sont les mêmes c'est bon
+
 ![4.3](4.3.PNG)
+
+ si un message de 512 bit est envoyé l asortie sera m xor (k || k)
+donc si on connait un message
+et son hash
+on peut retrouver k ||k = tau xor m
+ou tau est le hash
 
 ![4.4](4.4.PNG)
 
