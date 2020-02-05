@@ -26,7 +26,32 @@ Pour un graphe composé de $E$ arêtes et de $V$ sommets
 
 
 
+### Algorithme
 
+##### Chemin le plus court 
+
+**Bellman-Ford** : fonctionne avec des poids négatif $O(E*V)$ (on peut faire mieux si on retraite seulement ceux qui ont bougé mais améliore pas dans pire des cas)
+
+On relache tous les arcs puis tous les arcs etc.. si au V-1 passage on a un relachement qui permet de diminuer son poids c'est que circuit absorbant.
+
+```pseudocode
+Initialiser 
+	distTo(v) = 0 pour la source et infini pour autres sommet
+Repeter V-1 fois
+	relâcher tous les arcs
+```
+
+**Djikstra **: :exclamation: ne **fonctionne pas** avec des poids **négatif**  :warning:  avec queue $O(log_2(n))$  et $O(E\cdot log(V))$ sans queue. 
+
+```pseudocode
+Initialiser : 
+	mettre dist = 0 pour src et infini pour le reste
+Tant qu'il reste des sommets dans E 
+	retirer E de sommet 
+	relacher tous les arc v -> w issus de v
+```
+
+ On peut maintenir une queue de priorité (poids, sommet) et traiter dans cette ordre.
 
 
 
