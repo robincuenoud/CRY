@@ -1,3 +1,5 @@
+[toc]
+
 # ASD2 - Robin Cuénoud - Resumé
 
 ### Terminologie 
@@ -28,9 +30,61 @@ Pour un graphe composé de $E$ arêtes et de $V$ sommets
 
 ### Algorithme
 
-##### Chemin le plus court 
+#### Composantes fortement connexes : 
 
-**Bellman-Ford** : fonctionne avec des poids négatif $O(E*V)$ (on peut faire mieux si on retraite seulement ceux qui ont bougé mais améliore pas dans pire des cas)
+###### Kosaraju-Sharir
+
+
+
+#### Arbres couvrant de poids minimal
+
+##### Prim 
+
+```
+1. Commencer avec sommet 0 
+2. Ajouter l'arête de poids minimum parmi celles dont exact un sommet in arbre courant
+3. Répèter jusqu'a avoir V-1 arêtes
+```
+
+
+
+###### lazy prim 
+
+$O(E \cdot  log(E))$ 
+
+avec une priority queue contenant les arrêtes connectées à l’arbre courant par **au moins** un sommet.
+
+###### eager prim
+
+PQ contenant les **sommets** connectés à l’arbre courant. Prio = poids le plus petit parmi les arêtes connectant ce sommet à l’arbre. 
+
+
+
+##### Kruskal 
+
+Complexité : $O(E \cdot log(E))$ 
+
+```pseudocode
+On trie les arrêtes par ordre croissant
+1. On ajoute la moins cher
+2. on ajoute la suivante si elle n'introduit pas de cylce 
+```
+
+###### union-find
+
+$union(x,y)$ -> lie sommet x et y  
+
+Lorsqu’on lie deux arbres on accroche le plus petit au plus grand.
+
+$Connected(x,y)$ retourne si ils sont connecté
+
+
+
+#### Chemin le plus court 
+
+##### Bellman-Ford
+
+ fonctionne avec des poids négatif $O(E*V)$ (on peut faire mieux si on retraite seulement ceux qui ont bougé mais améliore pas dans pire des cas)
 
 On relache tous les arcs puis tous les arcs etc.. si au V-1 passage on a un relachement qui permet de diminuer son poids c'est que circuit absorbant.
 
@@ -41,7 +95,9 @@ Repeter V-1 fois
 	relâcher tous les arcs
 ```
 
-**Djikstra **: :exclamation: ne **fonctionne pas** avec des poids **négatif**  :warning:  avec queue $O(log_2(n))$  et $O(E\cdot log(V))$ sans queue. 
+##### Djikstra 
+
+ :exclamation: ne **fonctionne pas** avec des poids **négatif**  :warning:  avec queue $O(log_2(n))$  et $O(E\cdot log(V))$ sans queue. 
 
 ```pseudocode
 Initialiser : 
